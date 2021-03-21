@@ -8,7 +8,6 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const app = express();
-const router = express.Router();
 
 let qbToken = null;
 let oauthClient = null;
@@ -54,7 +53,7 @@ var corsOptions = function (req, callback) {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.get("/api/isauth", (req, res) => {
   res.json({ isAuth: qbToken != null });

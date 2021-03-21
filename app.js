@@ -1,7 +1,7 @@
 import express from "express";
 import OAuthClient from "intuit-oauth";
 import { Client, Environment } from "square";
-import { MongoClient } from "mongodb";
+import  MongoClient from "mongodb";
 import cors from "cors";
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();

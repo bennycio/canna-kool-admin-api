@@ -53,7 +53,7 @@ var corsOptions = function (req, callback) {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.get("/api/isauth", (req, res) => {
   res.json({ isAuth: qbToken != null });

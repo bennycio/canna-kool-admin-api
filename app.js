@@ -3,6 +3,8 @@ import OAuthClient from "intuit-oauth";
 import { Client, Environment } from "square";
 import MongoClient from "mongodb";
 import cors from "cors";
+import helmet from "helmet";
+
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
@@ -54,6 +56,7 @@ var corsOptions = {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(helmet());
 app.use(cors(corsOptions));
 
 app.get("/api/isauth", (req, res) => {

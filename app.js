@@ -1,9 +1,11 @@
 import express from "express";
 import OAuthClient from "intuit-oauth";
 import { Client, Environment } from "square";
-import MongoClient from "mongodb";
 import cors from "cors";
 import helmet from "helmet";
+
+const MongoClient = require('mongodb').MongoClient;
+
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();

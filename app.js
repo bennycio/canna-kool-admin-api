@@ -4,7 +4,7 @@ import { Client, Environment } from "square";
 import cors from "cors";
 import helmet from "helmet";
 
-const MongoClient = require('mongodb').MongoClient;
+const MongoClient = import('mongodb').MongoClient;
 
 
 if (process.env.NODE_ENV !== "production") {

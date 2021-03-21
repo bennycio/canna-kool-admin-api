@@ -3,8 +3,9 @@ import OAuthClient from "intuit-oauth";
 import { Client, Environment } from "square";
 import cors from "cors";
 import helmet from "helmet";
+import * as mongodb from 'mongodb';
 
-const MongoClient = import('mongodb').MongoClient;
+const MongoClient = mongodb.MongoClient;
 
 
 if (process.env.NODE_ENV !== "production") {

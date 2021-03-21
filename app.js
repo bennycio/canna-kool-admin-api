@@ -1,7 +1,7 @@
 import express from "express";
 import OAuthClient from "intuit-oauth";
 import { Client, Environment } from "square";
-import  MongoClient from "mongodb";
+import MongoClient from "mongodb";
 import cors from "cors";
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -47,24 +47,14 @@ async function getHandledPurchases() {
   return await handledPurchases;
 }
 
-var corsOptions = function (req, callback) {
-  callback(null, { exposedHeaders: ["X-Total-Count"] });
+var corsOptions = {
+  origin: "https://canna-kool-admin-client.netlify.app",
+  exposedHeaders: ["X-Total-Count"],
 };
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cors(corsOptions));
-app.use(function (req, res, next) {
-
-  res.setHeader('Access-Control-Allow-Origin', 'https://canna-kool-admin-client.netlify.app/');
-
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  res.setHeader('Access-Control-Allow-Headers', 'X-Total-Count,content-type');
-
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+app.use(cors(corsOptions));
 
 app.get("/api/isauth", (req, res) => {
   res.json({ isAuth: qbToken != null });
@@ -107,8 +97,7 @@ function getShippingAddressOrNone(shippingAddress) {
 app.get("/api/purchases", async (req, res) => {
   const squareClient = new Client({
     environment: Environment.Sandbox,
-    accessToken:
-      process.env.SQUARE_ACCESS_TOKEN,
+    accessToken: process.env.SQUARE_ACCESS_TOKEN,
   });
 
   const paymentsApi = squareClient.paymentsApi;
@@ -153,5 +142,7 @@ app.post("/api/createitem", async (req, res) => {
 });
 
 app.listen(process.env.PORT, () =>
-  console.log(`Server is listening on port 3600 with DB url at ` + url)
+  console.log(
+    `Server is listening on port ${process.env.PORT} with DB url at ${url}`
+  )
 );

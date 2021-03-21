@@ -152,6 +152,6 @@ app.post("/api/createitem", async (req, res) => {
     });
 });
 
-app.listen(3600, () =>
+app.listen(process.env.PORT, () =>
   console.log(`Server is listening on port 3600 with DB url at ` + url)
 );
